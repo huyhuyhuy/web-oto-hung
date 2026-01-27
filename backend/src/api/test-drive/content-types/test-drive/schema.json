@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_drives",
+  "info": {
+    "singularName": "test-drive",
+    "pluralName": "test-drives",
+    "displayName": "Test Drive"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "car": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car.car",
+      "inversedBy": "test_drives"
+    }
+  }
+}

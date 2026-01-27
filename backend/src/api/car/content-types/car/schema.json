@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cars",
+  "info": {
+    "singularName": "car",
+    "pluralName": "cars",
+    "displayName": "Car"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "required": false
+    },
+    "price": {
+      "required": true,
+      "default": 0,
+      "type": "decimal"
+    },
+    "description": {
+      "type": "text"
+    },
+    "specifications": {
+      "type": "text"
+    },
+    "color": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "test_drives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::test-drive.test-drive",
+      "mappedBy": "car"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "car"
+    }
+  }
+}

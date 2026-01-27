@@ -1,0 +1,39 @@
+tôi muốn viết 1 web sale oto vinfast, web mở trên điện thoại và máy tính đều ok, mượt đẹp.
+web k cần đăng ký, k cần đăng nhập.
+cơ bản web cần có:
+web sẽ hiển thị list oto + giá tiền. chi tiết từng oto
+đăng ký lái thử miễn phí (điền form đơn giản tên, sdt, địa chỉ)
+nút liên hệ ngay: zalo/fb
+bình luận của các khách hàng (cần tên khách - k cần đăng ký/đăng nhập vẫn có thể bình luận)
+hình ảnh tôi chụp với khách hàng khi bàn giao xe, để tăng uy tín.
+
+
+tôi muốn web này đơn giản về phía quản lý, người quản trị viên có thể dễ dàng thêm xe,
+đây là web thật, chứ k phải bài tập chỉ chạy ở local.
+thêm danh sách xe, thêm chi tiết xe.
+thêm ảnh chụp với khách, chỉnh sửa các thông tin liên hệ.
+xem danh sách khách đăng ký lái thử miễn phí
+
+tôi cần sử dụng cái gì, để làm được điều này. và giá thành hợp lý
+
+ Mục tiêu
+- Web bán ô tô VinFast, chạy mượt trên điện thoại và máy tính
+- Không cần đăng nhập để xem xe hay bình luận
+- Có form đăng ký lái thử
+- Có ảnh chụp với khách hàng
+- Có phần bình luận không cần tài khoản
+- Quản trị viên có thể thêm/sửa/xóa xe, ảnh, thông tin liên hệ, xem danh sách đăng ký lái thử
+
+🧱 2. Kiến trúc đề xuất
+🎨 Frontend (Giao diện người dùng)
+- ReactJS hoặc Next.js (tối ưu SEO, tốc độ nhanh)
+- Tailwind CSS hoặc Bootstrap để làm giao diện đẹp, responsive
+🧠 Backend (Xử lý dữ liệu)
+- Strapi CMS (gợi ý mạnh): là hệ thống quản trị nội dung mã nguồn mở, dễ dùng, có giao diện quản trị để thêm/sửa/xóa xe, ảnh, form đăng ký, v.v.
+- Có thể chạy trên server riêng hoặc dùng bản cloud (Strapi Cloud)
+- Hoặc: Node.js + Express + MongoDB (nếu bạn muốn tự code backend)
+🗃️ Database
+- dùng PostgreSQL để dùng Strapi bản tự host
+☁️ Hosting
+- Frontend: Dùng Vercel hoặc Netlify (miễn phí, dễ triển khai)
+- Backend (Strapi): Railway.app miễn phí gói nhỏ, dễ dùng

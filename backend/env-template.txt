@@ -1,0 +1,17 @@
+# Server
+HOST=0.0.0.0
+PORT=1337
+
+# Database - SQLite (Development)
+DATABASE_CLIENT=sqlite
+DATABASE_FILENAME=.tmp/data.db
+
+# Secrets (Strapi sẽ tự generate nếu để trống)
+APP_KEYS=tobemodified1tobemodified2tobemodified3tobemodified4
+API_TOKEN_SALT=tobemodifiedtobemodifiedtobemodified1
+ADMIN_JWT_SECRET=tobemodifiedtobemodifiedtobemodified2
+TRANSFER_TOKEN_SALT=tobemodifiedtobemodifiedtobemodified3
+JWT_SECRET=tobemodifiedtobemodifiedtobemodified4
+
+# Admin Panel
+ADMIN_PATH=/admin
