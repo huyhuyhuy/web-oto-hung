@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">VinFast Hùng</h3>
+            <h3 className="text-xl font-bold mb-4">Hùng Nguyễn - V I N F A S T</h3>
             <p className="text-gray-400">
               Showroom VinFast uy tín, chuyên bán xe điện VinFast chính hãng.
               Tư vấn nhiệt tình, giá tốt nhất.
@@ -26,7 +26,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} VinFast Hùng. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hùng Nguyễn - V I N F A S T. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,3 +1,13 @@
+cd D:\DEV_TOOL\web_oto_hung\backend
+npm run develop
+http://localhost:1337/admin
+
+cd D:\DEV_TOOL\web_oto_hung\frontend
+npm run dev
+Local: http://localhost:3000
+
+
+
 # ⚡ QUICKSTART - Chạy Local Nhanh
 
 Hướng dẫn siêu ngắn gọn để chạy website trên máy tính của bạn.

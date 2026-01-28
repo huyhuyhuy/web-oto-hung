@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/utils';
 
 export const metadata = {
   title: 'Gallery - Khoảnh Khắc Bàn Giao Xe',
-  description: 'Hình ảnh khách hàng nhận xe tại VinFast Hùng. Niềm vui và sự hài lòng của khách hàng là niềm tự hào của chúng tôi.',
+  description: 'Hình ảnh khách hàng nhận xe tại Hùng Nguyễn - V I N F A S T. Niềm vui và sự hài lòng của khách hàng là niềm tự hào của chúng tôi.',
 };
 
 export const revalidate = 60;
@@ -22,7 +22,7 @@ export default async function GalleryPage() {
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Niềm vui của khách hàng khi nhận xe chính là động lực lớn nhất của chúng tôi.
-            Cảm ơn quý khách đã tin tưởng VinFast Hùng!
+            Cảm ơn quý khách đã tin tưởng Hùng Nguyễn - V I N F A S T!
           </p>
         </div>
 

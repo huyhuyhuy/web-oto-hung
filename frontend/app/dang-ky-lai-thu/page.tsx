@@ -1,7 +1,7 @@
 import TestDriveForm from '@/components/TestDriveForm';
 
 export const metadata = {
-  title: 'Đăng Ký Lái Thử - VinFast Hùng',
+  title: 'Đăng Ký Lái Thử - Hùng Nguyễn - V I N F A S T',
   description: 'Đăng ký lái thử xe VinFast miễn phí. Trải nghiệm xe điện thông minh ngay hôm nay.',
 };
 

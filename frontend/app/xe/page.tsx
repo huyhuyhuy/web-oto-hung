@@ -2,7 +2,7 @@ import { getCars } from '@/lib/api';
 import CarCard from '@/components/CarCard';
 
 export const metadata = {
-  title: 'Danh Sách Xe - VinFast Hùng',
+  title: 'Danh Sách Xe - Hùng Nguyễn - V I N F A S T',
   description: 'Xem tất cả các dòng xe VinFast có sẵn tại showroom. Giá tốt, ưu đãi hấp dẫn.',
 };
 

@@ -794,6 +794,7 @@ export interface ApiCarCar extends Schema.CollectionType {
     singularName: 'car';
     pluralName: 'cars';
     displayName: 'Car';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -817,6 +818,7 @@ export interface ApiCarCar extends Schema.CollectionType {
       'oneToMany',
       'api::comment.comment'
     >;
+    detailedContent: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

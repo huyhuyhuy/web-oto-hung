@@ -12,7 +12,7 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold">
-            VinFast <span className="text-secondary">Hùng</span>
+          Hùng Nguyễn <span className="text-secondary"> V I N F A S T</span>
           </Link>
 
           {/* Desktop Menu */}

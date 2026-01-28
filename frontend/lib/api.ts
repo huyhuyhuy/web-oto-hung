@@ -19,6 +19,7 @@ export interface Car {
     specifications: string;
     color: string;
     featured: boolean;
+    detailedContent?: any; // Strapi Blocks JSON
     images: {
       data: Array<{
         id: number;

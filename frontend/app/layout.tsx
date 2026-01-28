@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import FloatingContact from '@/components/FloatingContact'
 
 export const metadata: Metadata = {
-  title: 'VinFast Hùng - Xe Điện VinFast Chính Hãng',
+  title: 'Hùng Nguyễn - V I N F A S T - Xe Điện VinFast Chính Hãng',
   description: 'Showroom VinFast uy tín, chuyên bán xe điện VinFast. Đăng ký lái thử miễn phí, tư vấn nhiệt tình, giá tốt nhất thị trường.',
   keywords: 'VinFast, xe điện, VF8, VF9, VFe34, bán xe VinFast, đăng ký lái thử',
 }
