@@ -173,7 +173,7 @@ export default async function CarDetailPage({ params }: Props) {
       {/* Hàng 4: CHI TIẾT xe */}
       <section className="py-8 bg-gray-50">
         <div className="container-custom">
-          <div className="bg-gray-900 text-white text-center py-4">
+          <div className="bg-primary text-white text-center py-4">
             <h2 className="text-2xl md:text-3xl font-bold">CHI TIẾT XE</h2>
           </div>
           <div className="bg-white p-8">

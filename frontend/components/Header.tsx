@@ -18,7 +18,7 @@ export default function Header() {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             <Link href="/dang-ky-lai-thu" className="hover:text-secondary transition-colors">
-              Đăng ký lái thử
+              Nhận báo giá xe
             </Link>
             <Link href="/gallery" className="hover:text-secondary transition-colors">
               Khách hàng
@@ -64,7 +64,7 @@ export default function Header() {
               className="block py-2 hover:text-secondary transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Đăng ký lái thử
+              Nhận báo giá xe
             </Link>
             <Link
               href="/gallery"

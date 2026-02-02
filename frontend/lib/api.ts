@@ -90,7 +90,7 @@ export const getCarsByCategory = async (category: string) => {
 };
 
 export const createPriceQuote = async (data: PriceQuote) => {
-  const response = await api.post('/price-quotes', { data });
+  const response = await api.post('/test-drives', { data });
   return response.data;
 };
 

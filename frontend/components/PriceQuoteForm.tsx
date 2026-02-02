@@ -47,11 +47,9 @@ export default function PriceQuoteForm({ carId, carName }: PriceQuoteFormProps) 
 
   return (
     <>
-      <h3 className="text-2xl font-bold text-primary mb-6">
-        <div className="text-center">
-          Đăng ký lái thử <br />
-          {carName && <span className="text-secondary">{carName}</span>}
-        </div>
+      <h3 className="text-2xl font-bold text-primary mb-6 text-center">
+        Nhận báo giá xe <br />
+        {carName && <span className="text-secondary">{carName}</span>}
       </h3>
       
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -115,7 +113,7 @@ export default function PriceQuoteForm({ carId, carName }: PriceQuoteFormProps) 
           disabled={loading}
           className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? 'Đang gửi...' : 'Đăng ký ngay'}
+          {loading ? 'Đang gửi...' : 'Nhận báo giá ngay'}
         </button>
       </form>
 

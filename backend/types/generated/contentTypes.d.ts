@@ -890,7 +890,7 @@ export interface ApiTestDriveTestDrive extends Schema.CollectionType {
   info: {
     singularName: 'test-drive';
     pluralName: 'test-drives';
-    displayName: 'Price Quote';
+    displayName: 'Test Drive';
     description: '';
   };
   options: {

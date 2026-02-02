@@ -1,29 +1,31 @@
-import TestDriveForm from '@/components/TestDriveForm';
+import PriceQuoteForm from '@/components/PriceQuoteForm';
 
 export const metadata = {
-  title: 'Đăng Ký Lái Thử - Hùng Nguyễn - V I N F A S T',
-  description: 'Đăng ký lái thử xe VinFast miễn phí. Trải nghiệm xe điện thông minh ngay hôm nay.',
+  title: 'Nhận Báo Giá Xe - Hùng Nguyễn - V I N F A S T',
+  description: 'Nhận báo giá xe VinFast miễn phí. Ưu đãi tốt nhất, tư vấn nhiệt tình.',
 };
 
-export default function TestDrivePage() {
+export default function PriceQuotePage() {
   return (
     <div className="py-16">
       <div className="container-custom">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-              Đăng Ký Lái Thử Miễn Phí
-            </h1>
+            {/* <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+              Nhận Báo Giá Xe VinFast
+            </h1> */}
             <p className="text-xl text-gray-600">
-              Trải nghiệm xe điện VinFast ngay hôm nay. Chúng tôi sẽ liên hệ trong vòng 24h.
+              Nhận báo giá chi tiết và ưu đãi tốt nhất. <br /> Chúng tôi sẽ liên hệ trong vòng 24h.
             </p>
           </div>
 
-          <TestDriveForm />
+          <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+            <PriceQuoteForm />
+          </div>
 
           <div className="mt-12 bg-blue-50 rounded-lg p-8">
             <h3 className="text-2xl font-bold text-primary mb-4 text-center">
-              Tại sao nên lái thử VinFast?
+              Tại sao nên mua xe tại Hùng?
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex items-start">
@@ -31,9 +33,9 @@ export default function TestDrivePage() {
                   ✓
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Hoàn toàn miễn phí</h4>
+                  <h4 className="font-bold mb-1">Báo giá minh bạch</h4>
                   <p className="text-gray-600 text-sm">
-                    Không mất bất kỳ chi phí nào khi lái thử
+                    Cam kết giá tốt nhất, không phát sinh chi phí ẩn
                   </p>
                 </div>
               </div>
@@ -53,9 +55,9 @@ export default function TestDrivePage() {
                   ✓
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Trải nghiệm thực tế</h4>
+                  <h4 className="font-bold mb-1">Hỗ trợ trả góp</h4>
                   <p className="text-gray-600 text-sm">
-                    Lái xe trên đường thực, cảm nhận công nghệ
+                    Lãi suất ưu đãi, hồ sơ đơn giản, duyệt nhanh
                   </p>
                 </div>
               </div>
