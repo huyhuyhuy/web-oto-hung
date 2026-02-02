@@ -12,53 +12,48 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "category": {
+      "type": "string",
+      "required": true
+    },
     "name": {
-      "type": "text"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
-      "required": false
+      "required": true
     },
-    "price": {
-      "required": true,
-      "default": 0,
-      "type": "decimal"
+    "priceFrom": {
+      "type": "integer",
+      "required": true
     },
-    "description": {
+    "shortPromo": {
       "type": "text"
-    },
-    "specifications": {
-      "type": "text"
-    },
-    "color": {
-      "type": "string"
-    },
-    "featured": {
-      "type": "boolean",
-      "default": false
     },
     "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
     },
-    "test_drives": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::test-drive.test-drive",
-      "mappedBy": "car"
+    "price": {
+      "type": "integer",
+      "required": true
     },
-    "comments": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::comment.comment",
-      "mappedBy": "car"
+    "originalPrice": {
+      "type": "integer"
+    },
+    "discount": {
+      "type": "integer"
+    },
+    "detailedPromo": {
+      "type": "richtext"
     },
     "detailedContent": {
       "type": "richtext"

@@ -30,7 +30,7 @@ export default function CarCard({ car }: CarCardProps) {
             {car.attributes.name}
           </h3>
           
-          <div className="mb-4">
+          <div>
             <div className="flex items-baseline gap-2 mb-2">
               <span className="text-sm text-gray-600">Giá từ</span>
               <span className="text-2xl font-bold text-secondary">
@@ -44,10 +44,6 @@ export default function CarCard({ car }: CarCardProps) {
               </p>
             )}
           </div>
-
-          <button className="btn-primary w-full text-center group-hover:bg-secondary transition-colors">
-            Xem chi tiết →
-          </button>
         </div>
       </div>
     </Link>

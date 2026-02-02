@@ -800,24 +800,17 @@ export interface ApiCarCar extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.Text;
-    slug: Attribute.UID;
-    price: Attribute.Decimal & Attribute.Required & Attribute.DefaultTo<0>;
-    description: Attribute.Text;
-    specifications: Attribute.Text;
-    color: Attribute.String;
-    featured: Attribute.Boolean & Attribute.DefaultTo<false>;
-    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    test_drives: Attribute.Relation<
-      'api::car.car',
-      'oneToMany',
-      'api::test-drive.test-drive'
-    >;
-    comments: Attribute.Relation<
-      'api::car.car',
-      'oneToMany',
-      'api::comment.comment'
-    >;
+    category: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID & Attribute.Required;
+    priceFrom: Attribute.Integer & Attribute.Required;
+    shortPromo: Attribute.Text;
+    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+      Attribute.Required;
+    price: Attribute.Integer & Attribute.Required;
+    originalPrice: Attribute.Integer;
+    discount: Attribute.Integer;
+    detailedPromo: Attribute.RichText;
     detailedContent: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -842,11 +835,6 @@ export interface ApiCommentComment extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     content: Attribute.Text & Attribute.Required;
-    car: Attribute.Relation<
-      'api::comment.comment',
-      'manyToOne',
-      'api::car.car'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -902,7 +890,8 @@ export interface ApiTestDriveTestDrive extends Schema.CollectionType {
   info: {
     singularName: 'test-drive';
     pluralName: 'test-drives';
-    displayName: 'Test Drive';
+    displayName: 'Price Quote';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -912,11 +901,6 @@ export interface ApiTestDriveTestDrive extends Schema.CollectionType {
     phone: Attribute.String & Attribute.Required;
     address: Attribute.Text;
     notes: Attribute.Text;
-    car: Attribute.Relation<
-      'api::test-drive.test-drive',
-      'manyToOne',
-      'api::car.car'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

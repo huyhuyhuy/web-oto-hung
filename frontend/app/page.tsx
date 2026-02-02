@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getCarsByCategory, getGallery } from '@/lib/api';
+import { getCars, getGallery } from '@/lib/api';
 import CarCarousel from '@/components/CarCarousel';
 import GalleryCarousel from '@/components/GalleryCarousel';
 import CommentSection from '@/components/CommentSection';
@@ -8,12 +8,33 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function HomePage() {
   const [carsResponse, galleryResponse] = await Promise.all([
-    getCarsByCategory('Các dòng xe VinFast'),
+    getCars(),
     getGallery(),
   ]);
 
-  const cars = carsResponse.data || [];
+  const allCars = carsResponse.data || [];
   const galleryItems = galleryResponse.data || [];
+
+  // Group xe theo category
+  const carsByCategory: { [key: string]: typeof allCars } = {};
+  allCars.forEach((car) => {
+    const category = car.attributes.category || 'Khác';
+    if (!carsByCategory[category]) {
+      carsByCategory[category] = [];
+    }
+    carsByCategory[category].push(car);
+  });
+
+  // Sắp xếp category (ưu tiên "Xe gia đình" trước)
+  const categories = Object.keys(carsByCategory).sort((a, b) => {
+    const order = ['Xe gia đình', 'Xe cao cấp', 'Xe dịch vụ'];
+    const indexA = order.indexOf(a);
+    const indexB = order.indexOf(b);
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    return a.localeCompare(b);
+  });
 
   return (
     <div>
@@ -39,44 +60,29 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-gray-100 py-12">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-secondary mb-2">50+</div>
-              <div className="text-gray-700">Xe đã bán</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-secondary mb-2">100+</div>
-              <div className="text-gray-700">Khách hài lòng</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-secondary mb-2">5★</div>
-              <div className="text-gray-700">Đánh giá</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-secondary mb-2">24/7</div>
-              <div className="text-gray-700">Hỗ trợ</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Cars Carousel */}
+      {/* Cars by Category */}
       <section id="cars-section" className="py-16 bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Các Dòng Xe VinFast
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Khám phá bảng giá và ưu đãi hấp dẫn cho các dòng xe điện VinFast. 
-              Liên hệ ngay để nhận báo giá chi tiết!
-            </p>
-          </div>
+          {/* Hiển thị từng nhóm xe */}
+          {categories.map((category) => (
+            <div key={category} className="mb-16 last:mb-0">
+              <div className="mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">
+                  {category}
+                </h3>
+                <div className="h-1 w-20 bg-secondary rounded"></div>
+              </div>
+              
+              <CarCarousel cars={carsByCategory[category]} />
+            </div>
+          ))}
           
-          <CarCarousel cars={cars} />
+          {allCars.length === 0 && (
+            <div className="text-center py-12 text-gray-500">
+              <p className="text-xl">Chưa có xe nào. Vui lòng thêm xe trong Admin Panel.</p>
+            </div>
+          )}
         </div>
       </section>
 

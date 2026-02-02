@@ -4,7 +4,8 @@
   "info": {
     "singularName": "test-drive",
     "pluralName": "test-drives",
-    "displayName": "Test Drive"
+    "displayName": "Price Quote",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,12 +25,6 @@
     },
     "notes": {
       "type": "text"
-    },
-    "car": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::car.car",
-      "inversedBy": "test_drives"
     }
   }
 }
