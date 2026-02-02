@@ -12,14 +12,16 @@ const api = axios.create({
 export interface Car {
   id: number;
   attributes: {
-    name: string;
-    slug: string;
-    price: number;
-    description: string;
-    specifications: string;
-    color: string;
-    featured: boolean;
-    detailedContent?: any; // Strapi Blocks JSON
+    category: string; // Phân loại (Các dòng xe VinFast, Dòng xe dịch vụ...)
+    name: string; // Tên xe
+    slug: string; // Slug
+    priceFrom: number; // Giá chỉ từ (hiển thị trên trang chủ)
+    shortPromo?: string; // Ưu đãi ngắn (hiển thị trên trang chủ)
+    price: number; // Giá bán (hiển thị trang chi tiết)
+    originalPrice?: number; // Giá gốc (để tính giảm giá)
+    discount?: number; // Khuyến mại (số tiền giảm)
+    detailedPromo?: string; // Ưu đãi chi tiết (Markdown)
+    detailedContent?: string; // Chi tiết xe (Markdown)
     images: {
       data: Array<{
         id: number;
@@ -34,7 +36,7 @@ export interface Car {
   };
 }
 
-export interface TestDrive {
+export interface PriceQuote {
   name: string;
   phone: string;
   address: string;
@@ -82,8 +84,13 @@ export const getFeaturedCars = async () => {
   return response.data;
 };
 
-export const createTestDrive = async (data: TestDrive) => {
-  const response = await api.post('/test-drives', { data });
+export const getCarsByCategory = async (category: string) => {
+  const response = await api.get(`/cars?filters[category][$eq]=${category}&populate=*&sort=priceFrom:asc`);
+  return response.data;
+};
+
+export const createPriceQuote = async (data: PriceQuote) => {
+  const response = await api.post('/price-quotes', { data });
   return response.data;
 };
 

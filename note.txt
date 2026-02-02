@@ -37,3 +37,55 @@ tôi cần sử dụng cái gì, để làm được điều này. và giá thà
 ☁️ Hosting
 - Frontend: Dùng Vercel hoặc Netlify (miễn phí, dễ triển khai)
 - Backend (Strapi): Railway.app miễn phí gói nhỏ, dễ dùng
+
+thay đổi hiển thị: Đăng ký lái thử -> đổi thành: nhận báo giá xe
+thay đổi về database:
+bảng xe: sẽ có 11 thông tin sau:
+
+1. phân loại (có dòng xe phổ thông, dòng xe dịch vụ)
+2. tên xe
+3. slug (auto)
+4. giá chỉ từ
+5. ưu đãi ngắn
+6. ảnh (có thể nhiều ảnh)
+7. giá bán
+8. giá gốc
+9. khuyến mại
+10. ưu đãi chi tiết
+11. chi tiết
+
+data ví dụ như sau:
+
+1. phân loại: Các dòng xe VinFast
+2. tên xe: VinFast VF3
+3. slug (auto): vf-3
+4. giá chỉ từ: 278000000
+5. ưu đãi ngắn: Giảm tiền mặt + phụ kiện cực hót khi liên hệ
+6. ảnh (có thể nhiều ảnh)
+7. giá bán: 281060000
+8. giá gốc: 299000000
+9. khuyến mại: 17940000
+10. ưu đãi chi tiết: SỐC VF3 CHỈ 45 TRIỆU, THỜI GIAN VAY 96 THÁNG - MIỄN PHÍ SẠC ĐẾN 2027, SỞ HỮU NGAY!
+Đặc biệt nhiều ưu đãi cho bác tài thời điểm này như:
+👉 Trả góp hàng tháng chỉ từ 4 triệu/tháng, cam kết bao đậu hồ sơ vay
+👉 Tặng 2 Năm Bảo Hiểm Thân Vỏ
+👉 HT Giảm Lãi Suất 3% Cố Định 3 Năm
+👉 Tích 6.000.000 VNĐ vào app VinClub
+👉 VF3 - Xe điện thông minh, quãng đường 210km, bảo hành pin 8 năm!
+👉 Tặng bộ phụ kiện chính hãng VinFast trị giá 20 triệu: thảm lót sàn, camera hành trình,...
+* Chỉ 50 suất đầu tiên, "Nhận thêm quà khi đặt cọc hôm nay"
+MIỄN THUẾ 100% THUẾ TRƯỚC BẠ
+ĐIỀU CHỈNH MỨC MỨC GIÁ NIÊM YẾT MỚI: ƯU ĐÃI GIẢM 6% GIÁ XE
+11. chi tiết:
+Sau gần 1 năm giới thiệu tới công chúng,, VinFast đã chính thức công bố giá bán và mở đặt cọc mẫu VinFast VF 3. Khác với thông tin cho rằng xe dự kiến có hai phiên bản là Eco và Plus, VF 3 thực tế chỉ có một phiên bản. Khách hàng có thể tiến hành thủ tục đặt cọc 15 triệu đồng để mua xe VinFast VF3 theo hình thức online trang web chính thức của hãng hoặc làm thủ tục trực tiếp tại các đại lý trên toàn quốc.
++ ảnh ...
+
+Với data như trên, thì trên web ở trang chủ: sẽ có mục hiển thị danh sách các xe phổ thông (1)
+và hiển thị xe VF3 như data bên trên (mục 2,4,5,6) và chỉ lấy 1 ảnh đầu làm ảnh đại diện.
+
+khi nhấn vào thì sẽ qua trang chi tiết, trang này sẽ hiển thị các thông tin: 2,6,7,8,9,10,11
+
+hãy xem 2 bức ảnh ví dụ của tôi sau để hiểu bố cục, và dữ liệu
+
+
+

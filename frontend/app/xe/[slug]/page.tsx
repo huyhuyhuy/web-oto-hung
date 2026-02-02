@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { getCarBySlug, getImageUrl } from '@/lib/api';
 import { formatPrice } from '@/lib/utils';
-import TestDriveForm from '@/components/TestDriveForm';
+import PriceQuoteForm from '@/components/PriceQuoteForm';
 import CommentSection from '@/components/CommentSection';
 import { BlocksRenderer } from '@/lib/blocks-renderer';
 import type { Metadata } from 'next';
@@ -81,64 +81,164 @@ export default async function CarDetailPage({ params }: Props) {
   const images = car.attributes.images?.data || [];
   const hasDetailedContent = car.attributes.detailedContent && 
     (Array.isArray(car.attributes.detailedContent) || typeof car.attributes.detailedContent === 'string');
+  const hasDetailedPromo = car.attributes.detailedPromo && typeof car.attributes.detailedPromo === 'string';
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section với ảnh lớn */}
-      <section className="relative h-[400px] md:h-[500px] bg-primary">
-        {images.length > 0 ? (
-          <>
-            <Image
-              src={getImageUrl(images[0].attributes.url)}
-              alt={car.attributes.name}
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-primary to-blue-800" />
-        )}
-        
-        {/* Title & Price overlay */}
-        <div className="absolute bottom-0 left-0 right-0 text-white p-8">
-          <div className="container-custom">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              {car.attributes.name}
-            </h1>
-            <p className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">
-              {formatPrice(car.attributes.price)}
-            </p>
+      {/* Header với tên xe */}
+      <section className="bg-gray-900 text-white py-6">
+        <div className="container-custom">
+          <h1 className="text-3xl md:text-4xl font-bold">
+            {car.attributes.name} 2026
+          </h1>
+        </div>
+      </section>
+
+      {/* Main Content: Ảnh + Thông tin giá */}
+      <section className="py-8 bg-white">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* LEFT: Gallery ảnh */}
+            <div className="lg:col-span-2">
+              {/* Ảnh lớn */}
+              <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl mb-4">
+                {images.length > 0 ? (
+                  <Image
+                    src={getImageUrl(images[0].attributes.url)}
+                    alt={car.attributes.name}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                  />
+                ) : (
+                  <div className="bg-gray-200 w-full h-full flex items-center justify-center text-gray-400">
+                    No Image
+                  </div>
+                )}
+              </div>
+              
+              {/* Gallery thumbnail */}
+              {images.length > 1 && (
+                <div className="grid grid-cols-4 gap-2">
+                  {images.slice(0, 4).map((img: any, idx: number) => (
+                    <div key={img.id} className="relative h-24 rounded overflow-hidden shadow border-2 border-gray-300 hover:border-primary cursor-pointer transition-colors">
+                      <Image
+                        src={getImageUrl(img.attributes.url)}
+                        alt={`${car.attributes.name} - ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 25vw, 10vw"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* RIGHT: Thông tin giá & Form */}
+            <div className="space-y-6">
+              {/* Rating & Social */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="flex text-yellow-500 text-xl">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>★</span>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600">(9858 đánh giá)</span>
+                </div>
+                <div className="flex gap-2">
+                  <button className="w-8 h-8 bg-blue-600 text-white rounded flex items-center justify-center hover:bg-blue-700">
+                    f
+                  </button>
+                  <button className="w-8 h-8 bg-blue-400 text-white rounded flex items-center justify-center hover:bg-blue-500">
+                    t
+                  </button>
+                  <button className="w-8 h-8 bg-blue-700 text-white rounded flex items-center justify-center hover:bg-blue-800">
+                    in
+                  </button>
+                </div>
+              </div>
+
+              {/* Giá */}
+              <div className="space-y-2">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-sm text-gray-600 uppercase font-semibold">Giá Bán</span>
+                  <span className="text-3xl font-bold text-red-600">
+                    {formatPrice(car.attributes.price)} VNĐ
+                  </span>
+                </div>
+                
+                {car.attributes.originalPrice && (
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-sm text-gray-600 uppercase font-semibold">Giá Gốc</span>
+                    <span className="text-xl text-gray-500 line-through">
+                      {formatPrice(car.attributes.originalPrice)} VNĐ
+                    </span>
+                  </div>
+                )}
+                
+                {car.attributes.discount && (
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-sm text-gray-600 uppercase font-semibold">Khuyến mãi</span>
+                    <span className="text-2xl font-bold text-red-600">
+                      {formatPrice(car.attributes.discount)} VNĐ
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Ưu đãi chi tiết */}
+              {hasDetailedPromo && (
+                <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4">
+                  <div className="prose prose-sm max-w-none
+                    prose-p:text-sm prose-p:mb-2 prose-p:leading-relaxed
+                    prose-strong:text-red-600 prose-strong:font-bold
+                    prose-ul:list-none prose-ul:pl-0
+                    prose-li:flex prose-li:items-start prose-li:gap-2 prose-li:mb-2
+                    prose-li:before:content-['👉'] prose-li:before:flex-shrink-0"
+                  >
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {car.attributes.detailedPromo}
+                    </ReactMarkdown>
+                  </div>
+                </div>
+              )}
+
+              {/* Form Nhận báo giá */}
+              <div className="bg-gray-900 text-white rounded-lg p-6">
+                <div className="mb-4">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="text-2xl">📞</span>
+                    <a href="tel:0387332698" className="text-3xl font-bold text-yellow-400 hover:text-yellow-300">
+                      0387.332.698
+                    </a>
+                  </div>
+                  <p className="text-center text-sm text-gray-300">
+                    Hãy liên hệ ngay để được mua xe với giá tốt nhất!
+                  </p>
+                </div>
+                
+                <div className="border-t border-gray-700 pt-4">
+                  <h3 className="text-center font-bold text-lg mb-4 text-yellow-400">
+                    NHẬN BÁO GIÁ XE
+                  </h3>
+                  <PriceQuoteForm carId={car.id} carName={car.attributes.name} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Gallery ảnh nhỏ */}
-      {images.length > 1 && (
-        <section className="py-8 bg-white">
-          <div className="container-custom">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {images.slice(1, 5).map((img: any, idx: number) => (
-                <div key={img.id} className="relative h-48 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                  <Image
-                    src={getImageUrl(img.attributes.url)}
-                    alt={`${car.attributes.name} - ${idx + 2}`}
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-            </div>
+      {/* CHI TIẾT Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container-custom">
+          <div className="bg-gray-900 text-white text-center py-4 rounded-t-lg">
+            <h2 className="text-2xl md:text-3xl font-bold">CHI TIẾT</h2>
           </div>
-        </section>
-      )}
-
-      {/* Nội dung chi tiết */}
-      <section className="py-12 bg-white">
-        <div className="container-custom max-w-5xl">
+          <div className="bg-white p-8 rounded-b-lg shadow-lg">
           {hasDetailedContent ? (
             // Render content (Blocks hoặc Markdown)
             typeof car.attributes.detailedContent === 'string' ? (
@@ -261,19 +361,7 @@ export default async function CarDetailPage({ params }: Props) {
               )}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Form Đăng Ký Lái Thử */}
-      <section id="dang-ky-lai-thu" className="py-16 bg-gray-100">
-        <div className="container-custom max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4">
-            Đăng ký lái thử {car.attributes.name}
-          </h2>
-          <p className="text-center text-gray-600 mb-8">
-            Điền thông tin bên dưới, chúng tôi sẽ liên hệ trong vòng 24h
-          </p>
-          <TestDriveForm carId={car.id} carName={car.attributes.name} />
+          </div>
         </div>
       </section>
 
@@ -295,13 +383,19 @@ export default async function CarDetailPage({ params }: Props) {
             '@context': 'https://schema.org',
             '@type': 'Product',
             name: car.attributes.name,
-            description: car.attributes.description,
-            image: images[0] ? getImageUrl(images[0].attributes.url) : undefined,
+            description: car.attributes.detailedPromo || `Xe điện ${car.attributes.name} với giá từ ${formatPrice(car.attributes.priceFrom)}`,
+            image: images.map((img: any) => getImageUrl(img.attributes.url)),
             offers: {
               '@type': 'Offer',
               price: car.attributes.price,
               priceCurrency: 'VND',
               availability: 'https://schema.org/InStock',
+              priceValidUntil: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0],
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '5',
+              reviewCount: '9858',
             },
             brand: {
               '@type': 'Brand',

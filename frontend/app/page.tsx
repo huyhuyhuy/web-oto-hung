@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getCars, getGallery } from '@/lib/api';
+import { getCarsByCategory, getGallery } from '@/lib/api';
 import CarCarousel from '@/components/CarCarousel';
 import GalleryCarousel from '@/components/GalleryCarousel';
 import CommentSection from '@/components/CommentSection';
@@ -8,7 +8,7 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function HomePage() {
   const [carsResponse, galleryResponse] = await Promise.all([
-    getCars(),
+    getCarsByCategory('Các dòng xe VinFast'),
     getGallery(),
   ]);
 
@@ -26,12 +26,15 @@ export default async function HomePage() {
             <span className="text-secondary">Tương Lai Xanh, Hành Trình An Toàn</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Showroom VinFast uy tín - Tư vấn nhiệt tình - Giá tốt nhất thị trường
+            Showroom VinFast Hùng - Tư vấn nhiệt tình - Giá tốt nhất thị trường
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/dang-ky-lai-thu" className="btn-primary inline-block">
-              Đăng ký lái thử miễn phí
-            </Link>
+            <a href="#cars-section" className="btn-primary inline-block">
+              Xem bảng giá xe
+            </a>
+            <a href="tel:0123456789" className="btn-secondary inline-block bg-white text-primary hover:bg-gray-100">
+              📞 Liên hệ ngay: 0123 456 789
+            </a>
           </div>
         </div>
       </section>
@@ -61,25 +64,19 @@ export default async function HomePage() {
       </section>
 
       {/* Cars Carousel */}
-      <section className="py-16 bg-white">
+      <section id="cars-section" className="py-16 bg-white">
         <div className="container-custom">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">
-              Danh Sách Xe VinFast
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              Các Dòng Xe VinFast
             </h2>
-            <Link href="/xe" className="text-secondary font-semibold hover:underline hidden md:block">
-              Xem tất cả →
-            </Link>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Khám phá bảng giá và ưu đãi hấp dẫn cho các dòng xe điện VinFast. 
+              Liên hệ ngay để nhận báo giá chi tiết!
+            </p>
           </div>
           
           <CarCarousel cars={cars} />
-          
-          {/* Mobile View All Link */}
-          <div className="text-center mt-8 md:hidden">
-            <Link href="/xe" className="btn-secondary inline-block">
-              Xem tất cả xe →
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -122,14 +119,19 @@ export default async function HomePage() {
       <section className="bg-primary text-white py-16">
         <div className="container-custom text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Sẵn sàng trải nghiệm xe điện VinFast?
+            Cần tư vấn chi tiết về xe VinFast?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Đăng ký lái thử miễn phí ngay hôm nay. Chúng tôi sẽ liên hệ trong vòng 24h.
+            Liên hệ ngay với chúng tôi để nhận báo giá tốt nhất và tư vấn chi tiết về xe điện VinFast.
           </p>
-          <Link href="/dang-ky-lai-thu" className="btn-primary inline-block">
-            Đăng ký ngay
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:0123456789" className="btn-secondary inline-block bg-white text-primary hover:bg-gray-100">
+              📞 Gọi ngay: 0123 456 789
+            </a>
+            <a href="https://zalo.me/0123456789" target="_blank" rel="noopener noreferrer" className="btn-primary inline-block">
+              💬 Chat Zalo
+            </a>
+          </div>
         </div>
       </section>
     </div>

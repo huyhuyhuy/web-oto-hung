@@ -15,8 +15,8 @@ export default function CarCard({ car }: CarCardProps) {
 
   return (
     <Link href={`/xe/${car.attributes.slug}`}>
-      <div className="card group cursor-pointer">
-        <div className="relative h-64 overflow-hidden">
+      <div className="card group cursor-pointer hover:shadow-2xl transition-shadow duration-300">
+        <div className="relative h-64 overflow-hidden rounded-t-lg">
           <Image
             src={imageUrl}
             alt={car.attributes.name}
@@ -24,27 +24,30 @@ export default function CarCard({ car }: CarCardProps) {
             className="object-cover group-hover:scale-110 transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          {car.attributes.featured && (
-            <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold">
-              Nổi bật
-            </div>
-          )}
         </div>
         <div className="p-6">
-          <h3 className="text-xl font-bold text-primary mb-2">
+          <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors">
             {car.attributes.name}
           </h3>
-          <p className="text-gray-600 mb-4 line-clamp-2">
-            {car.attributes.description}
-          </p>
-          <div className="flex justify-between items-center">
-            <span className="text-2xl font-bold text-secondary">
-              {formatPrice(car.attributes.price)}
-            </span>
-            <span className="text-primary font-semibold group-hover:text-secondary transition-colors">
-              Chi tiết →
-            </span>
+          
+          <div className="mb-4">
+            <div className="flex items-baseline gap-2 mb-2">
+              <span className="text-sm text-gray-600">Giá từ</span>
+              <span className="text-2xl font-bold text-secondary">
+                {formatPrice(car.attributes.priceFrom)}
+              </span>
+            </div>
+            
+            {car.attributes.shortPromo && (
+              <p className="text-sm text-red-600 font-medium line-clamp-2">
+                {car.attributes.shortPromo}
+              </p>
+            )}
           </div>
+
+          <button className="btn-primary w-full text-center group-hover:bg-secondary transition-colors">
+            Xem chi tiết →
+          </button>
         </div>
       </div>
     </Link>
