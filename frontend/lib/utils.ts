@@ -1,8 +1,5 @@
 export const formatPrice = (price: number): string => {
-  return new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  }).format(price);
+  return new Intl.NumberFormat('vi-VN').format(price) + ' VNĐ';
 };
 
 export const formatDate = (dateString: string): string => {

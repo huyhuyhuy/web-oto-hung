@@ -115,7 +115,7 @@ export default async function CarDetailPage({ params }: Props) {
                 <div className="mb-4">
                   <span className="text-base text-gray-600 uppercase font-semibold">GIÁ BÁN: </span>
                   <span className="text-3xl font-bold text-red-600">
-                    {formatPrice(car.attributes.price)} đ VNĐ
+                    {formatPrice(car.attributes.price)}
                   </span>
                 </div>
                 
@@ -124,7 +124,7 @@ export default async function CarDetailPage({ params }: Props) {
                   <div className="mb-4">
                     <span className="text-base text-gray-600 uppercase font-semibold">GIÁ GỐC: </span>
                     <span className="text-2xl text-gray-500 line-through">
-                      {formatPrice(car.attributes.originalPrice)} đ VNĐ
+                      {formatPrice(car.attributes.originalPrice)}
                     </span>
                   </div>
                 )}
@@ -134,7 +134,7 @@ export default async function CarDetailPage({ params }: Props) {
                   <div className="mb-4 last:mb-0">
                     <span className="text-base text-gray-600 uppercase font-semibold">KHUYẾN MÃI: </span>
                     <span className="text-3xl font-bold text-red-600">
-                      {formatPrice(car.attributes.discount)} đ VNĐ
+                      {formatPrice(car.attributes.discount)}
                     </span>
                   </div>
                 )}
@@ -143,7 +143,7 @@ export default async function CarDetailPage({ params }: Props) {
 
             {/* KHUNG 2 (Phải - 1 cột): Form Nhận báo giá */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg border-4 border-primary shadow-lg h-full flex flex-col">
+              <div className="bg-white rounded-lg shadow-md h-full flex flex-col p-6 md:p-8">
                 <PriceQuoteForm carId={car.id} carName={car.attributes.name} />
               </div>
             </div>

@@ -46,10 +46,12 @@ export default function PriceQuoteForm({ carId, carName }: PriceQuoteFormProps) 
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
+    <>
       <h3 className="text-2xl font-bold text-primary mb-6">
-        Nhận báo giá xe
-        {carName && <span className="text-secondary"> - {carName}</span>}
+        <div className="text-center">
+          Đăng ký lái thử <br />
+          {carName && <span className="text-secondary">{carName}</span>}
+        </div>
       </h3>
       
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -113,7 +115,7 @@ export default function PriceQuoteForm({ carId, carName }: PriceQuoteFormProps) 
           disabled={loading}
           className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? 'Đang gửi...' : 'Nhận báo giá ngay'}
+          {loading ? 'Đang gửi...' : 'Đăng ký ngay'}
         </button>
       </form>
 
@@ -123,6 +125,6 @@ export default function PriceQuoteForm({ carId, carName }: PriceQuoteFormProps) 
           0123 456 789
         </a>
       </p>
-    </div>
+    </>
   );
 }
